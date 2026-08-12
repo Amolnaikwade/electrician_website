@@ -97,7 +97,7 @@ const Contact = () => {
                   <p className="text-gray-500">Address</p>
 
                   <p className="font-semibold">
-                    Pune, Maharashtra
+                    Kopargaon, Maharashtra
                   </p>
                 </div>
               </div>

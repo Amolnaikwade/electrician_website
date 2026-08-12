@@ -140,7 +140,7 @@ const Footer = () => {
 
               <div className="flex items-center gap-3">
                 <FaMapMarkerAlt className="text-yellow-400" />
-                <span>Pune, Maharashtra</span>
+                <span>Kopargaon, Maharashtra</span>
               </div>
 
             </div>
@@ -187,11 +187,11 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
 
           <p>
-            © {year} ABC Electric. All Rights Reserved.
+            © {year} Bachkar enterprises. All Rights Reserved.
           </p>
 
           <p>
-            Designed & Developed by Your Company
+            Designed & Developed by Amolnaikwade
           </p>
 
         </div>
