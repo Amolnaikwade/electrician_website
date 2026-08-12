@@ -112,7 +112,7 @@ const Contact = () => {
 
             <iframe
               title="Google Map"
-              src="https://www.google.com/maps?q=Pune&output=embed"
+              src="https://www.google.com/maps?q=kopargaon&output=embed"
               className="w-full h-[400px] border-0"
               loading="lazy"
             ></iframe>
