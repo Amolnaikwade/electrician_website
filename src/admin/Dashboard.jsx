@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API = "http://localhost:5000/api/videos";
+const API = "https://electrician-backend-wcx9.onrender.com/api/videos";;
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -170,7 +170,7 @@ const Dashboard = () => {
                   <video
                     controls
                     className="w-full h-60 object-cover"
-                    src={`http://localhost:5000${item.videoUrl}`}
+                    src={`https://electrician-backend-wcx9.onrender.com${item.videoUrl}`}
                   />
 
                   <div className="p-5">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const API = "http://localhost:5000/api/videos";
+const API = "https://electrician-backend-wcx9.onrender.com/api/videos";
+const BASE_URL = "https://electrician-backend-wcx9.onrender.com";
 
 const Videos = () => {
   const [videos, setVideos] = useState([]);
@@ -59,7 +60,7 @@ const Videos = () => {
               >
 
                 <video
-                  src={`http://localhost:5000${video.videoUrl}`}
+                   src={`${BASE_URL}${video.videoUrl}`}
                   controls
                   muted
                   playsInline
