@@ -1,23 +1,25 @@
-import video1 from "../assets/video1.mp4";
-import video2 from "../assets/video2.mp4";
-import video3 from "../assets/video3.mp4";
+import { useEffect, useState } from "react";
 
-const videos = [
-  {
-    src: video1,
-    title: "House Wiring Project",
-  },
-  {
-    src: video2,
-    title: "Electrical Panel Installation",
-  },
-  {
-    src: video3,
-    title: "LED Lighting Installation",
-  },
-];
+const API = "http://localhost:5000/api/videos";
 
 const Videos = () => {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
+  const fetchVideos = async () => {
+    try {
+      const res = await fetch(API);
+      const data = await res.json();
+
+      setVideos(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <section className="py-20 bg-gray-900">
       <div className="max-w-7xl mx-auto px-6">
@@ -35,7 +37,8 @@ const Videos = () => {
           </h2>
 
           <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
-            Real videos from our completed electrical projects, showcasing quality workmanship and attention to detail.
+            Real videos from our completed electrical projects,
+            showcasing quality workmanship and attention to detail.
           </p>
 
         </div>
@@ -44,37 +47,42 @@ const Videos = () => {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-          {videos.map((video, index) => (
+          {videos.length === 0 ? (
+            <p className="text-center text-white col-span-3">
+              No videos uploaded yet.
+            </p>
+          ) : (
+            videos.map((video) => (
+              <div
+                key={video._id}
+                className="bg-white/10 backdrop-blur rounded-2xl overflow-hidden shadow-xl hover:-translate-y-2 transition duration-300"
+              >
 
-            <div
-              key={index}
-              className="bg-white/10 backdrop-blur rounded-2xl overflow-hidden shadow-xl hover:-translate-y-2 transition duration-300"
-            >
+                <video
+                  src={`http://localhost:5000${video.videoUrl}`}
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-64 object-cover"
+                />
 
-              <video
-                src={video.src}
-                controls
-                muted
-                playsInline
-                preload="metadata"
-                className="w-full h-64 object-cover"
-              />
+                <div className="p-5">
 
-              <div className="p-5">
+                  <h3 className="text-white font-semibold text-lg">
+                    {video.title}
+                  </h3>
 
-                <h3 className="text-white font-semibold text-lg">
-                  {video.title}
-                </h3>
+                  <p className="text-gray-400 text-sm mt-2">
+                    Professional electrical installation completed safely
+                    and efficiently.
+                  </p>
 
-                <p className="text-gray-400 text-sm mt-2">
-                  Professional electrical installation completed safely and efficiently.
-                </p>
+                </div>
 
               </div>
-
-            </div>
-
-          ))}
+            ))
+          )}
 
         </div>
 
