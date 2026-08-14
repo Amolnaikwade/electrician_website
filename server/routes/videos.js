@@ -82,10 +82,12 @@ router.delete("/:id", async (req, res) => {
       });
     }
 
-    // Delete from Cloudinary
-    await cloudinary.uploader.destroy(video.publicId, {
-      resource_type: "video",
-    });
+    // Delete from Cloudinary only if publicId exists
+    if (video.publicId && video.publicId.trim() !== "") {
+      await cloudinary.uploader.destroy(video.publicId, {
+        resource_type: "video",
+      });
+    }
 
     // Delete from MongoDB
     await Video.findByIdAndDelete(req.params.id);
@@ -94,6 +96,7 @@ router.delete("/:id", async (req, res) => {
       success: true,
       message: "Video deleted successfully",
     });
+
   } catch (err) {
     console.error(err);
 
