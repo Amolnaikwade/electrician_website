@@ -5,15 +5,12 @@ const videoSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      trim: true,
     },
-
     videoUrl: {
       type: String,
       required: true,
     },
-
-    fileName: {
+    publicId: {
       type: String,
       required: true,
     },
@@ -23,6 +20,4 @@ const videoSchema = new mongoose.Schema(
   }
 );
 
-const Video = mongoose.model("Video", videoSchema);
-
-export default Video;
+export default mongoose.model("Video", videoSchema);

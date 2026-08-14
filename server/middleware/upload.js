@@ -1,47 +1,35 @@
 import multer from "multer";
-import path from "path";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import cloudinary from "../config/cloudinary.js";
 
-// Storage Configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-
-  filename: (req, file, cb) => {
-    const uniqueName =
-      Date.now() + "-" + Math.round(Math.random() * 1e9);
-
-    cb(
-      null,
-      uniqueName + path.extname(file.originalname)
-    );
-  },
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => ({
+    folder: "electrician-videos",
+    resource_type: "video",
+    allowed_formats: ["mp4", "mov", "webm"],
+    public_id: `${Date.now()}-${file.originalname.split(".")[0]}`,
+  }),
 });
 
-// Allowed File Types
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = [
-    ".mp4",
-    ".mov",
-    ".webm",
-  ];
-
-  const ext = path.extname(file.originalname).toLowerCase();
-
-  if (allowedTypes.includes(ext)) {
-    cb(null, true);
-  } else {
-    cb(new Error("Only MP4, MOV and WEBM videos are allowed."));
-  }
-};
-
-// Multer Upload
 const upload = multer({
   storage,
   limits: {
     fileSize: 20 * 1024 * 1024, // 20 MB
   },
-  fileFilter,
+  fileFilter: (req, file, cb) => {
+    const allowed = [
+      "video/mp4",
+      "video/quicktime",
+      "video/webm",
+    ];
+
+    if (allowed.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only MP4, MOV and WEBM videos are allowed."));
+    }
+  },
 });
 
 export default upload;

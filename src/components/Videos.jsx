@@ -60,7 +60,7 @@ const Videos = () => {
               >
 
                 <video
-                   src={`${BASE_URL}${video.videoUrl}`}
+                   src={video.videoUrl}
                   controls
                   muted
                   playsInline

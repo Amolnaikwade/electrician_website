@@ -170,7 +170,7 @@ const Dashboard = () => {
                   <video
                     controls
                     className="w-full h-60 object-cover"
-                    src={`https://electrician-backend-wcx9.onrender.com${item.videoUrl}`}
+                    src={item.videoUrl}
                   />
 
                   <div className="p-5">
@@ -180,11 +180,11 @@ const Dashboard = () => {
                     </h3>
 
                     <button
-                      onClick={() => deleteVideo(item._id)}
-                      className="mt-4 bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg"
-                    >
-                      Delete
-                    </button>
+  onClick={() => deleteVideo(item._id)}
+  className="mt-4 bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg"
+>
+  Delete
+</button>
 
                   </div>
 
