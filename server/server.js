@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import fs from "fs";
 
 import adminRoutes from "./routes/admin.js";
 import videoRoutes from "./routes/videos.js";
@@ -9,6 +10,11 @@ import videoRoutes from "./routes/videos.js";
 dotenv.config();
 
 const app = express();
+
+// Create uploads folder if it doesn't exist
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads", { recursive: true });
+}
 
 // Middleware
 app.use(cors());
